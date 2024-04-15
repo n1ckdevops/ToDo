@@ -2,20 +2,13 @@ const todoControll = document.querySelector(".todo-control");
 const headerInput = document.querySelector(".header-input");
 const todoList = document.querySelector(".todo-list");
 const todoCompleted = document.querySelector(".todo-completed");
-
-document.addEventListener("DOMContentLoaded", function () {
-  const storedData = localStorage.getItem("toDoData");
-  if (storedData) {
-    toDoData = JSON.parse(storedData);
-    render(); 
-  }
-});
-const toDoData = [];
+let toDoData = [];
 
 const saveDataToLocalStorage = function () {
   localStorage.setItem("toDoData", JSON.stringify(toDoData));
   console.log("save data to local storage");
 };
+
 // отрисовывает тудушки
 const render = function () {
   todoList.innerHTML = "";
@@ -50,9 +43,18 @@ const render = function () {
     });
   });
 };
+
+document.addEventListener("DOMContentLoaded", function () {
+  const storedData = localStorage.getItem("toDoData");
+  if (storedData) {
+    toDoData = JSON.parse(storedData);
+    render();
+  }
+});
+
 todoControll.addEventListener("submit", function (event) {
   event.preventDefault();
-  if (headerInput.value !== "") {
+  if (headerInput.value.trim() !== "") {
     const newToDo = {
       text: headerInput.value,
       completed: false,

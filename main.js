@@ -24,7 +24,7 @@ const render = function () {
       '<div class="todo-buttons">' +
       '<button class="todo-remove">"</button>' +
       '<button class="todo-complete"></button>' +
-      "</div>;";
+      "</div>";
     if (item.completed) {
       todoCompleted.append(li);
     } else {
